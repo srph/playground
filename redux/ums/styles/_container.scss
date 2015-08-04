@@ -1,0 +1,14 @@
+.container {
+  display: table;
+  height: 100%;
+  width: 100%;
+
+  > .inner-container {
+    display: table-cell;
+    vertical-align: middle;
+  }
+
+  > .inner-container.-center {
+    text-align: center;
+  }
+}

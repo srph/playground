@@ -1,0 +1,17 @@
+@mixin vertical-rhythm() {
+  margin-top: 0;
+  margin-bottom: ($vertical-spacing / 2);
+}
+
+@mixin montserrat() {
+  font-family: "Montserrat", sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6,
+p, blockquote, small {
+  @include vertical-rhythm;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: normal;
+}

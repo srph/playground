@@ -1,0 +1,43 @@
+@mixin g-container() {
+  width: 992px;
+  @include outer-container;
+}
+
+/* main container */
+.g-container {
+  @include g-container;
+}
+
+/* spacing */
+.g-bottom-space {
+  margin-bottom: $vertical-spacing;
+}
+
+.g-bottom-space-1 {
+  margin-bottom: ($vertical-spacing * 2);
+}
+
+/* column container */
+.g-row {
+  @include row;
+
+  /* so we don't have to add -right foreach column */
+  &.-right > * {
+    float: right !important;
+  }
+}
+
+/*
+ * columns
+ * .g-col-1 ~ 12
+ */
+@for $i from 1 through 12 {
+  .g-col-#{$i} {
+    @include span-columns($i);
+
+    /* we'll use this sparingly */
+    &.-right {
+      float: right !important;
+    }
+  }
+}
