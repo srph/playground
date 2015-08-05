@@ -13,7 +13,7 @@ export default class AddUserButton extends React.Component {
   render() {
     const { addUser, hasUsers } = this.props;
 
-    return !hasUsers ? (
+    return hasUsers ? (
       <button className="btn -info" onClick={::this.handleClick}>
         New User
       </button>

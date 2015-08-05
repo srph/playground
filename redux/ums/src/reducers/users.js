@@ -50,9 +50,9 @@ export default function users(state = [], action) {
   }
 }
 
-export const filterBySoftDeleted = users => (
+export const filterUsersBySoftDeleted = users => (
   users.filter(user => user[SOFT_DELETED])
 );
-export const filterByNotSoftDeleted = users => (
+export const filterUsersByNotSoftDeleted = users => (
   users.filter(user => !user[SOFT_DELETED])
 );

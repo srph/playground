@@ -1,9 +1,9 @@
 import React, { PropTypes } from 'react';
 
-export default class UserDeleteButton extends React.Component {
+export default class UserRestoreButton extends React.Component {
   static propTypes = {
     userId: PropTypes.number.isRequired,
-    softDeleteUser: PropTypes.func.isRequired
+    restoreUser: PropTypes.func.isRequired
   };
 
   constructor(props, context) {
@@ -12,14 +12,14 @@ export default class UserDeleteButton extends React.Component {
 
   render() {
     return (
-      <button className="btn -danger" onClick={::this.handleClick}>
-        Delete
+      <button className="btn -info -small" onClick={::this.handleClick}>
+        Restore
       </button>
     );
   }
 
   handleClick() {
-    this.props.softDeleteUser(
+    this.props.restoreUser(
       this.props.userId
     );
   }

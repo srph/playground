@@ -18,6 +18,13 @@ p, blockquote, small {
 h1, h2, h3, h4, h5, h6 {
   font-weight: normal; }
 
+.special-heading::after {
+  content: "";
+  display: block;
+  height: 1px;
+  width: 100%;
+  background: #eee; }
+
 * {
   box-sizing: border-box;
   text-rendering: optimizeLegibility;
@@ -32,7 +39,7 @@ html, body {
   font-family: "Montserrat", sans-serif; }
 
 #root {
-  min-height: 100vh; }
+  margin: 50px 0; }
 
 /* main container */
 .g-container {
@@ -211,6 +218,14 @@ html, body {
   transition: 0.15s all; }
   .btn, .btn:hover {
     text-decoration: none; }
+  .btn.-success {
+    color: #fff;
+    background: #60ab50;
+    border-color: transparent; }
+    .btn.-success:hover {
+      color: #fff;
+      background: #569a48;
+      border-color: transparent; }
   .btn.-info {
     color: #fff;
     background: #6DC5DC;
@@ -218,6 +233,14 @@ html, body {
     .btn.-info:hover {
       color: #fff;
       background: #58bdd7;
+      border-color: transparent; }
+  .btn.-warning {
+    color: #fff;
+    background: #efe52d;
+    border-color: transparent; }
+    .btn.-warning:hover {
+      color: #fff;
+      background: #ede215;
       border-color: transparent; }
   .btn.-danger {
     color: #fff;
@@ -229,6 +252,13 @@ html, body {
       border-color: transparent; }
   .btn.-rounded {
     border-radius: 25px; }
+  .btn.-small {
+    height: 25px;
+    line-height: 25px;
+    padding: 0 5px;
+    font-size: 10px; }
+  .btn + .btn {
+    margin-left: 25px; }
 
 .panel {
   padding: 20px;
@@ -241,6 +271,8 @@ html, body {
   display: table;
   height: 100%;
   width: 100%; }
+  .container.-full {
+    height: 100vh; }
   .container > .inner-container {
     display: table-cell;
     vertical-align: middle; }

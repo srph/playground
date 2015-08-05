@@ -1,5 +1,9 @@
 import React, { PropTypes } from 'react';
 
+import Empty from './Empty';
+import UserRestoreButton from './UserRestoreButton';
+import UserDeleteButton from './UserDeleteButton';
+
 export default class UserPanel extends React.Component {
   static propTypes = {
     /**
@@ -15,37 +19,43 @@ export default class UserPanel extends React.Component {
   }
 
   render() {
-    const { users, softDeleteUser } = this.props;
+    const { users } = this.props;
 
     return (
       <section className="g-col-6">
         <div className="panel">
-          {users.length === 0 ? this.renderEmpty() : this.renderList()}
+          {
+            users.length === 0
+              ? <Empty />
+              : this.renderList()
+          }
         </div>
       </section>
     );
   }
 
   renderList() {
-    return this.props.users.map((user, i) => {
-      return (
-        <section className="g-row" key={i}>
-          <div className="g-col-6">{user.username}</div>
-          <div className="g-col-4">
-            <button className="btn -danger">Delete</button>
-            <button className="btn -info">Restore</button>
-          </div>
-        </section>
-      );
-    });
-  }
+    const { users, deleteUser, restoreUser } = this.props;
 
-  renderEmpty() {
     return (
-      <section className="container">
-        <section className="inner-container -center">
-          <h1>No soft deleted users yet.</h1>
-        </section>
+      <section>
+        <h1 className="special-heading">Archived Users</h1>
+        {users.map((user, i) => {
+          return (
+            <section className="g-row g-bottom-space" key={i}>
+              <div className="g-col-6">{user.username}</div>
+              <div className="g-col-6">
+                <UserRestoreButton
+                  userId={user.id}
+                  restoreUser={restoreUser} />
+                  
+                <UserDeleteButton
+                  userId={user.id}
+                  deleteUser={deleteUser} />
+              </div>
+            </section>
+          );
+        })}
       </section>
     );
   }

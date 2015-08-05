@@ -3,6 +3,10 @@
   height: 100%;
   width: 100%;
 
+  &.-full {
+    height: 100vh;
+  }
+
   > .inner-container {
     display: table-cell;
     vertical-align: middle;
