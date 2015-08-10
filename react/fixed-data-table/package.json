@@ -1,0 +1,21 @@
+{
+  "name": "fixed-data-table-react-need-to-add-react-suffix-because-fixed-data-table-itself-is-one-of-our-dependencies",
+  "version": "1.0.0",
+  "description": "",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build:script": "browserify . -o ./compiled.js -d -v --extension=.jsx -t [ babelify --stage=0 ]"
+  },
+  "author": "srph <seraphipod@gmail.com> (https://srph.github.io)",
+  "license": "ISC",
+  "dependencies": {
+    "fixed-data-table": "^0.4.1",
+    "react": "^0.13.3"
+  },
+  "devDependencies": {
+    "babel": "^5.8.21",
+    "babelify": "^6.1.3",
+    "browserify": "^11.0.1"
+  }
+}

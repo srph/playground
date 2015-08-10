@@ -1,0 +1,63 @@
+.tree,
+.tree ul,
+.tree li {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	position: relative;
+	text-align: center;
+}
+
+.tree ul ul::before {
+	content: "";
+	position: absolute;
+	top: 0;
+	left: 50%;
+	width: 0;
+	height: 20px;
+	border-left: 1px solid #ccc;
+	background: #fff;
+}
+
+.tree li {
+	float: left;
+	position: relative;
+	padding: 20px 5px 0 5px;
+}
+
+.tree li:only-child {
+	padding-top: 0;
+}
+
+.tree li::after {
+	content: "";
+	position: absolute;
+	top: 0;
+	right: 50%;
+	height: 20px;
+	width: 50%;
+	border-top: 1px solid #ccc;
+	border-left: 1px solid #ccc;
+}
+
+.tree li::before {
+	content: "";
+	position: absolute;
+	top: 0;
+	left: 50%;
+	height: 20px;
+	width: 50%;
+	border-top: 1px solid #ccc;
+}
+
+.tree li a {
+	padding: 20px 5px 0 5px;
+	background: #fff;
+	border: 1px solid #ccc;
+	color: #000;
+	text-decoration: none;
+}
+
+.tree li ul {
+	padding-top: 20px;
+}
