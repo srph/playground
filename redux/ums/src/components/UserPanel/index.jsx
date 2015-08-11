@@ -1,13 +1,16 @@
 import React, { PropTypes } from 'react';
 
 import Empty from './Empty';
+import SearchInput from './SearchInput';
 import UserSoftDeleteButton from './UserSoftDeleteButton';
 
 export default class UserPanel extends React.Component {
   static propTypes = {
+    hasUsers: PropTypes.bool.isRequired,
     users: PropTypes.arrayOf(PropTypes.object).isRequired,
     addUser: PropTypes.func.isRequired,
-    softDeleteUser: PropTypes.func.isRequired
+    softDeleteUser: PropTypes.func.isRequired,
+    onUsersFilterInput: PropTypes.func.isRequired
   };
 
   constructor(props, context) {
@@ -15,12 +18,13 @@ export default class UserPanel extends React.Component {
   }
 
   render() {
-    const { users, addUser } = this.props;
+    const { hasUsers, users, addUser } = this.props;
+
     return (
       <section className="g-col-6">
         <div className="panel">
           {
-            users.length === 0
+            !hasUsers
               ? <Empty addUser={addUser} />
               : this.renderList()
           }
@@ -30,11 +34,16 @@ export default class UserPanel extends React.Component {
   }
 
   renderList() {
-    const { users, softDeleteUser } = this.props;
+    const {
+      users,
+      softDeleteUser,
+      onUsersFilterInput
+    } = this.props;
 
     return (
       <section>
         <h1 className="special-heading">Users</h1>
+        <SearchInput onUsersFilterInput={onUsersFilterInput} />
         {users.map((user, i) => {
           return (
             <section className="g-row g-bottom-space" key={i}>

@@ -2,7 +2,11 @@ import React, { PropTypes, Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-import { filterUsersBySoftDeleted, filterUsersByNotSoftDeleted } from '../reducers/users';
+import {
+  filterUsersBySoftDeleted,
+  filterUsersByNotSoftDeleted,
+  filterUsersByInput
+} from '../reducers/users';
 import * as UserActions from '../actions/UserActions';
 
 import UserPanel from './UserPanel';
@@ -19,11 +23,17 @@ export default class App extends Component {
     users: PropTypes.arrayOf(PropTypes.object).isRequired
   };
 
+  state = {
+    usersFilter: '',
+    softDeletedUsersFilter: ''    
+  };
+
   constructor(props, context) {
     super(props, context);
   }
 
   render() {
+    const { usersFilter, softDeletedUsersFilter } = this.state;
     const { dispatch, users, softDeletedUsers } = this.props;
     const actions = bindActionCreators(UserActions, dispatch);
 
@@ -37,16 +47,28 @@ export default class App extends Component {
 
         <div className="g-row">
           <UserPanel
-            users={users}
+            hasUsers={users.length !== 0}
+            users={filterUsersByInput(users, usersFilter)}
             addUser={actions.addUser}
-            softDeleteUser={actions.softDeleteUser} />
+            softDeleteUser={actions.softDeleteUser}
+            onUsersFilterInput={::this.handleUsersFilterInput} />
 
           <DeletedUserPanel
-            users={softDeletedUsers}
+            hasUsers={softDeletedUsers.length !== 0}
+            users={filterUsersByInput(softDeletedUsers, softDeletedUsersFilter)}
             restoreUser={actions.restoreUser}
-            deleteUser={actions.deleteUser} />
+            deleteUser={actions.deleteUser}
+            handleSoftDeletedUsersFilterInput={::this.handleSoftDeletedUsersFilterInput} />
         </div>
       </main>
     );
+  }
+
+  handleUsersFilterInput(value) {
+    this.setState({ usersFilter: value });
+  }
+
+  handleSoftDeletedUsersFilterInput(value) {
+    this.setState({ softDeletedUsersFilter: value });
   }
 }

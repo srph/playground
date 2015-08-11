@@ -56,3 +56,11 @@ export const filterUsersBySoftDeleted = users => (
 export const filterUsersByNotSoftDeleted = users => (
   users.filter(user => !user[SOFT_DELETED])
 );
+export const filterUsersByInput = (users, input) => (
+  input !== null && input.length >= 1
+    ? users.filter(user => user.username
+        .toLowerCase()
+          .includes(input.toLowerCase())
+      )
+    : users
+);

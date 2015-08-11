@@ -4,14 +4,16 @@ import Empty from './Empty';
 import UserRestoreButton from './UserRestoreButton';
 import UserDeleteButton from './UserDeleteButton';
 
-export default class UserPanel extends React.Component {
+export default class DeletedUserPanel extends React.Component {
   static propTypes = {
+    hasUsers: PropTypes.bool.isRequired,
     /**
      * Soft-deleted users
      */
     users: PropTypes.arrayOf(PropTypes.object).isRequired,
     restoreUser: PropTypes.func.isRequired,
-    deleteUser: PropTypes.func.isRequired
+    deleteUser: PropTypes.func.isRequired,
+    handleSoftDeletedUsersFilterInput: PropTypes.func.isRequired
   };
 
   constructor(props, context) {
