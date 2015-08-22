@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react';
 
 import Empty from './Empty';
+import SearchInput from './SearchInput';
 import UserRestoreButton from './UserRestoreButton';
 import UserDeleteButton from './UserDeleteButton';
 
@@ -21,27 +22,29 @@ export default class DeletedUserPanel extends React.Component {
   }
 
   render() {
-    const { users } = this.props;
+    const { hasUsers } = this.props;
 
     return (
       <section className="g-col-6">
         <div className="panel">
-          {
-            users.length === 0
-              ? <Empty />
-              : this.renderList()
-          }
+          {!hasUsers ? <Empty /> : this.renderList()}
         </div>
       </section>
     );
   }
 
   renderList() {
-    const { users, deleteUser, restoreUser } = this.props;
+    const {
+      users,
+      deleteUser,
+      restoreUser,
+      handleSoftDeletedUsersFilterInput
+    } = this.props;
 
     return (
       <section>
         <h1 className="special-heading">Archived Users</h1>
+        <SearchInput handleSoftDeletedUsersFilterInput={handleSoftDeletedUsersFilterInput} />
         {users.map((user, i) => {
           return (
             <section className="g-row g-bottom-space" key={i}>
