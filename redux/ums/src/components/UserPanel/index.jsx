@@ -43,7 +43,9 @@ export default class UserPanel extends React.Component {
     return (
       <section>
         <h1 className="special-heading">Users</h1>
-        <SearchInput onUsersFilterInput={onUsersFilterInput} />
+        <SearchInput
+          hasFilteredUsers={users.length !== 0}
+          onUsersFilterInput={onUsersFilterInput} />
         {users.map((user, i) => {
           return (
             <section className="g-row g-bottom-space" key={i}>

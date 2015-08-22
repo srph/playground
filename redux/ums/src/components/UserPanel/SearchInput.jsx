@@ -1,7 +1,9 @@
 import React, { PropTypes } from 'react';
+import classnames from 'classnames';
 
 export default class SearchInput extends React.Component {
   static propTypes = {
+    hasFilteredUsers: PropTypes.bool.isRequired,
     onUsersFilterInput: PropTypes.func.isRequired
   };
 
@@ -14,6 +16,10 @@ export default class SearchInput extends React.Component {
       <section className="g-bottom-space">
         <input
           type="text"
+          placeholder="Filter users.."
+          className={classnames('form-control', {
+            '-error': !this.props.hasFilteredUsers
+          })}
           onChange={::this.handleChange} />
       </section>
     );

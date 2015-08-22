@@ -1,4 +1,5 @@
 import React, { PropTypes } from 'react';
+import classnames from 'classnames';
 
 export default class SearchInput extends React.Component {
   static propTypes = {
@@ -14,6 +15,10 @@ export default class SearchInput extends React.Component {
       <section className="g-bottom-space">
         <input
           type="text"
+          placeholder="Filter archived users.."
+          className={classnames('form-control', {
+            '-error': !this.props.hasFilteredUsers
+          })}
           onChange={::this.handleChange} />
       </section>
     );

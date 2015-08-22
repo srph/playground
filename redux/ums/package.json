@@ -7,7 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build:script": "browserify . -o ./dist/script.js -d -v --extension=.jsx -t [ babelify --stage=0 ]",
     "watch:script": "watchify . -o ./dist/script.js -d -v --extension=.jsx -t [ babelify --stage=0 ]",
-    "style": "sass ./styles/main.scss:./dist/style.css"
+    "build:style": "sass ./styles/main.scss:./dist/style.css",
+    "watch:style": "sass --watch ./styles/main.scss:./dist/style.css"
   },
   "author": "srph <seraphipod@gmail.com> (https://srph.github.io)",
   "license": "ISC",

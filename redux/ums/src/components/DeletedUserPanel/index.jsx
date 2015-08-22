@@ -44,7 +44,9 @@ export default class DeletedUserPanel extends React.Component {
     return (
       <section>
         <h1 className="special-heading">Archived Users</h1>
-        <SearchInput handleSoftDeletedUsersFilterInput={handleSoftDeletedUsersFilterInput} />
+        <SearchInput
+          hasFilteredUsers={users.length !== 0}
+          handleSoftDeletedUsersFilterInput={handleSoftDeletedUsersFilterInput} />
         {users.map((user, i) => {
           return (
             <section className="g-row g-bottom-space" key={i}>
