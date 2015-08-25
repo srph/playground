@@ -1,0 +1,25 @@
+{
+  "name": "select2",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "browserify . -o dist/build.js -t [ babelify --stage=0 ]",
+    "watch": "watchify . -o dist/build.js -d -v -t [ babelify --stage=0 ]"
+  },
+  "author": "srph <seraphipod@gmail.com> (https://srph.github.io)",
+  "license": "ISC",
+  "dependencies": {
+    "isomorphic-fetch": "^2.1.1",
+    "md5": "^2.0.0",
+    "react": "^0.13.3",
+    "react-select": "^0.6.4"
+  },
+  "devDependencies": {
+    "babel": "^5.8.21",
+    "babelify": "^6.2.0",
+    "browserify": "^11.0.1",
+    "watchify": "^3.3.1"
+  }
+}
