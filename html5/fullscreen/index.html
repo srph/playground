@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Fullscreen API</title>
+  <style>
+  body {
+    font-family: Helvetica, sans-serif;
+    font-size: 1.5em;
+    background: #313131;
+
+    /* normalize a bit */
+    margin: 0;
+  }
+
+  .wrapper {
+    display: table;
+    height: 100vh;
+    width: 100%;
+  }
+
+  .wrapper > .inner-wrapper {
+    display: table-cell;
+    vertical-align: middle;
+  }
+
+  .blob {
+    margin: 0 auto;
+    height: 64px;
+    width: 64px;
+    color: #fff;
+    line-height: 64px;
+    text-align: center;
+    border-radius: 50%;
+    background: red;
+    transition: 0.23s all linear;
+    transform: scale(1);
+    cursor: pointer;
+  }
+
+  .blob.-full {
+    background: blue;
+    transform: scale(1.5);
+  }
+
+  .blob.-full:hover {
+    transform: scale(0.8);
+  }
+
+  .blob.-normal:hover {
+    transform: scale(1.5);
+  }
+  </style>
+</head>
+<body>
+  <main class="wrapper">
+    <section class="inner-wrapper">
+      <div class="blob -normal" id="blob" data-flag="0">+</div>
+    </section>
+  </main>
+
+  <script>
+    (function($el) {
+      "use strict";
+      var fs = new Fullscreen($el);
+
+      $el.addEventListener('click', function() {
+        if ( !parseInt($el.getAttribute('data-flag'), 10) ) {
+          addClass($el, '-full');
+          removeClass($el, '-normal');
+          $el.setAttribute('data-flag', 1);
+          $el.innerHTML = '-';
+          fs.enter();
+        } else {
+          addClass($el, '-normal')
+          removeClass($el, '-full');
+          $el.setAttribute('data-flag', 0);
+          $el.innerHTML = '+';
+          fs.exit();
+        }
+      });
+
+      function Fullscreen($el) {
+        this.$el = $el;
+      }
+
+      Fullscreen.prototype.request = function() {
+        var $el = this.$el;
+        if ($el.requestFullscreen) {
+          $el.requestFullscreen();
+        } else if ($el.msRequestFullscreen) {
+          $el.msRequestFullscreen();
+        } else if ($el.mozRequestFullScreen) {
+          $el.mozRequestFullScreen();
+        } else if ($el.webkitRequestFullscreen) {
+          $el.webkitRequestFullscreen();
+        }
+      }
+
+      Fullscreen.prototype.enter = function() {
+        var $el = this.$el;
+
+        // https://developer.mozilla.org/en-US/docs/Web/API/Fullscreen_API
+        if (!$el.fullscreenElement &&
+            !$el.mozFullScreenElement &&
+            !$el.webkitFullscreenElement &&
+            !$el.msFullscreenElement
+        ) {  
+          if (document.documentElement.requestFullscreen) {
+            document.documentElement.requestFullscreen();
+          } else if (document.documentElement.msRequestFullscreen) {
+            document.documentElement.msRequestFullscreen();
+          } else if (document.documentElement.mozRequestFullScreen) {
+            document.documentElement.mozRequestFullScreen();
+          } else if (document.documentElement.webkitRequestFullscreen) {
+            document.documentElement.webkitRequestFullscreen(Element.ALLOW_KEYBOARD_INPUT);
+          }
+        }
+      }
+
+      Fullscreen.prototype.exit = function() {
+        var $el = this.$el;
+
+        // https://developer.mozilla.org/en-US/docs/Web/API/Fullscreen_API
+        if (document.exitFullscreen) {
+          document.exitFullscreen();
+        } else if (document.msExitFullscreen) {
+          document.msExitFullscreen();
+        } else if (document.mozCancelFullScreen) {
+          document.mozCancelFullScreen();
+        } else if (document.webkitExitFullscreen) {
+          document.webkitExitFullscreen();
+        }
+      }
+
+      function addClass(el, className) {
+        var classNames = el.className.split(' ');
+        var index = classNames.indexOf(className);
+
+        if ( index === -1 ) {
+          classNames.push(className);
+          el.className = classNames.join(' ');
+        }
+      }
+
+      function removeClass(el, className) {
+        var classNames = el.className.split(' ');
+        var index = classNames.indexOf(className);
+
+        if ( index !== -1 ) {
+          classNames.splice(index, 1);
+          el.className = classNames.join(' ');
+        }
+      }
+    })(document.getElementById('blob'));
+  </script>
+</body>
+</html>
