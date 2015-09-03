@@ -11,3 +11,7 @@ His exercises or the assignment includes:
 - GCF (while) [runnable](http://runnable.com/U7hA6_SPFxUQYh80/gcf-while-loop-for-c%2B%2B)
 - Factorial (for) [runnable](http://runnable.com/U7hACfSPFxUQYh73/factorial-for-loop-for-c%2B%2B)
 - Decimal to Octal (do-while) [runnable](http://runnable.com/U7hBOoZzA7V5-3Bm/dec-to-oct-do-while-loop-for-c%2B%2B)
+
+### Info
+> Commit Date: Jul 6, 2014
+> https://github.com/srph/basic-iterations-exercise-cpp
