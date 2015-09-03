@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+  <meta charset="utf-8">
+</head>
+<body>
+  <div class="container">
+    <form enctype="multipart/form-data">
+      <input type="file" name="file">
+      <button type="submit"> Upload </button>
+    </form>
+  </div>
+
+  <script type="text/javascript">
+    +function() {
+      var $form = document.querySelector('form');
+
+      $form.addEventListener('submit', function(evt) {
+        evt.preventDefault();
+        var form = new FormData($form);
+        var request = new XMLHttpRequest();
+
+        request.open('POST', 'src-1/srv.php');
+        request.send(form);
+        request.onreadystatechange = function() {
+          if ( request.readyState && request.status == 200 ) {
+            console.log(request.responseText);
+          }
+        }
+      });
+    }();
+  </script>
+</body>
+</html>

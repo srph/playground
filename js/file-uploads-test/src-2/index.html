@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+</head>
+<body>
+  <div class="container">
+    <form enctype="multipart/form-data">
+      <input type="file" name="file">
+      <button type="submit"> Upload </button>
+    </form>
+  </div>
+
+  <script type="text/javascript">
+    +function() {
+      var input = document.querySelector('input[type=file]');
+
+      input.addEventListener('change', function(evt) {
+        console.log(evt.target.files[0]);
+        var request = new XMLHttpRequest();
+        var data = new FormData();
+        data.append('something', 'hehe');
+        data.append('asd', { yes: 'heh '});
+        data.append('files', evt.target.files[0]);
+
+        request.open('POST', 'src-2/srv.php');
+        // request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        request.onreadystatechange = success;
+        request.send(data);
+
+        function success() {
+          if ( request.status == 200 && request.readyState == 4 ) {
+            console.log(request.responseText);
+          }
+        }
+      });
+    }()
+  </script>
+</body>
+</html>

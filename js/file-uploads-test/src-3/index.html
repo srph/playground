@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+</head>
+<body>
+  <div class="container">
+    <form enctype="multipart/form-data">
+      <input type="file" name="file" multiple>
+      <button type="submit"> Upload </button>
+    </form>
+  </div>
+  <script type="text/javascript">
+    +function() {
+      var $form = document.querySelector('form');
+
+      $form.addEventListener('submit', function(evt) {
+        evt.preventDefault();
+        console.log(evt);
+        var files = evt.target[0].files;
+        var data = new FormData();
+        var xhr = new XMLHttpRequest();
+
+        for ( i in files ) {
+          data.append(i, files[i]);
+        }
+
+        data.append('y', '123');
+
+        xhr.open('POST', 'src-3/srv.php');
+        xhr.onreadystatechange = success;
+        xhr.send(data);
+
+        function success() {
+          if ( xhr.status == 200 && xhr.readyState == 4 ) {
+            console.log(xhr.responseText);
+          }
+        }
+      });
+    }();
+  </script>
+</body>
+</html>
