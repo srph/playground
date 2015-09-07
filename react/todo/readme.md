@@ -1,5 +1,5 @@
-## todo
 ![Preview](todo.gif)
+# todo
 Basic shit
 
 ## Setup
