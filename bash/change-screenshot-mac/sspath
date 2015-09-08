@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+# Code was a copy-pasta from osxdaily.com
+# http://osxdaily.com/2011/01/26/change-the-screenshot-save-file-location-in-mac-os-x/
+
+if [ "$1" == '' ]
+	then
+		echo 'Usage:'
+		echo 'sspath <path>'
+		echo 'e.g., `sspath ~/Screenshots`'
+		exit
+fi
+
+mkdir -p $1
+defaults write com.apple.screencapture location $1
+killall SystemUIServer
