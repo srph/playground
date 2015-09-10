@@ -5,9 +5,9 @@
   "main": "client/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "npm run server && npm run client",
+    "start": "npm run server & npm run client",
     "server": "babel server/index.js | node",
-    "client": "webpack && node wepback.server.js"
+    "client": "webpack && node webpack.server.js"
   },
   "author": "",
   "license": "ISC",
