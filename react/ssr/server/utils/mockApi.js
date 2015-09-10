@@ -1,3 +1,3 @@
 export default function mockApi(callback) {
-  setTimeout(callback, 3000);
+  return setTimeout(callback, 5000);
 }
