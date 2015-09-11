@@ -1,19 +1,24 @@
 import 'babel/polyfill';
 
 import React from 'react';
-import { Provider } from 'react-redux';
+import exportReactToWindow from '../common/utils/react/exportReactToWindow';
 
-export { INITIAL_STATE } from '../common/constants/Store';
+import { Provider } from 'react-redux';
+import { INITIAL_STATE } from '../common/constants/Store';
 import configureStore from '../common/store/configureStore';
-import App from '../common/App';
+
+import { Router } from 'react-router';
+import createBrowserHistory from 'history/lib/createBrowserHistory';
+import routes from '../common/routes';
 
 const initialState = window[INITIAL_STATE];
 const store = configureStore(initialState);
-const mountNode = document.getElementById('mount');
 
 React.render(
   <Provider store={store}>
-    {() => <App />}
+    {() => <Router history={createBrowserHistory()} children={routes} />}
   </Provider>,
-  mountNode
+  document.getElementById('mount')
 );
+
+exportReactToWindow();
