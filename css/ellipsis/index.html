@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Ellipsis</title>
+  <style>
+    body {
+      font-family: Helvetica, sans-serif;
+      font-size: 14px;
+    }
+
+    .some-ellipsis {
+      width: 125px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .okay-ellipsis {
+      width: 300px;
+    }
+
+    .okay-ellipsis > .okay-ellipsis-target {
+      display: inline-block;
+      max-width: 100%;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+  </style>
+</head>
+<body>
+  <p class="some-ellipsis">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+
+  <p class="okay-ellipsis">
+    <span class="okay-ellipsis-target ">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</span>
+  </p>
+</body>
+</html>
