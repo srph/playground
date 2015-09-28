@@ -1,0 +1,19 @@
+{
+  "name": "path-browserify-test",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "open index.html",
+    "build": "./node_modules/.bin/webpack index.js build.js -v -d"
+  },
+  "author": "Kier Borromeo <seraphipod@gmail.com> (http://srph.github.io)",
+  "license": "ISC",
+  "devDependencies": {
+    "webpack": "^1.12.2"
+  },
+  "dependencies": {
+    "path-browserify": "0.0.0"
+  }
+}
