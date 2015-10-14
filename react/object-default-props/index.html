@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Title</title>
+</head>
+<body>
+  <div id="mount"></div>
+
+  <script src="node_modules/react/dist/react.js"></script>
+  <script src="node_modules/react-dom/dist/react-dom.js"></script>
+  <script>
+    (function(React, DOM) {
+      var App = React.createClass({
+        getDefaultProps: function() {
+          return {
+            placement: {
+              x: 'left',
+              y: 'bottom'
+            }
+          };
+        },
+
+        render: function() {
+          console.log(this.props);
+          return React.DOM.div();
+        }
+      });
+
+      App = React.createFactory(App);
+
+      DOM.render(
+        App({ placement: { x: 'right' } }),
+        document.getElementById('mount')
+      );
+    })(window.React, window.ReactDOM);
+  </script>
+</body>
+</html>
