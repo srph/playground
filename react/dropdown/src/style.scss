@@ -1,6 +1,7 @@
 $font-size-small: 12px;
 $dropdown-bg: #FFF;
 $dropdown-sub-bg: #2EAF8B;
+$dropdown-color: #4A4A4A;
 $dropdown-border: #F0F0F0;
 $dropdown-shadow: #C4C4C4;
 $dropdown-arrow-size: 6px;
@@ -10,6 +11,18 @@ $dropdown-border-radius: 3px;
   list-style: none;
   padding: 0;
   margin: 0;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Helvetica, "Helvetica Neue", sans-serif;
+}
+
+a {
+  text-decoration: none;
 }
 
 /**
@@ -27,6 +40,7 @@ $dropdown-border-radius: 3px;
     display: block;
     visibility: hidden;
     box-shadow: 0px -2px 5px $dropdown-shadow;
+    border-radius: $dropdown-border-radius;
 
     &.c-dropdown__menu--open {
       visibility: visible;
@@ -72,7 +86,7 @@ $dropdown-border-radius: 3px;
       > a {
         display: block;
         padding: 6px 10px;
-        color: $dropdown-border;
+        color: $dropdown-color;
         background: $dropdown-bg;
         // Some awesome small-elegant typography like the other ones
         text-transform: uppercase;
@@ -82,7 +96,7 @@ $dropdown-border-radius: 3px;
 
         &:hover {
           text-decoration: none;
-          color: #fff;
+          color: $dropdown-bg;
           background: $dropdown-sub-bg;
         }
       }

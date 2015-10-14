@@ -14,7 +14,19 @@ export default class Dropdown extends React.Component {
     /**
      * The element used to trigger the open state
      */
-    trigger: PropTypes.element.isRequired
+    trigger: PropTypes.element.isRequired,
+
+    position: PropTypes.shape({
+      x: PropTypes.oneOf(['left', 'right']),
+      y: PropTypes.oneOf(['top', 'bottom']),
+    }).isRequired
+  };
+
+  static defaultProps = {
+    position: {
+      x: 'left',
+      y: 'top'
+    }
   };
 
   constructor(props) {
