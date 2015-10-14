@@ -1,9 +1,12 @@
-import React, { PropTypes, cloneElement } from 'react';
-import { render, unmountComponentAtNode } from 'react-dom';
+import React, { cloneElement, PropTypes } from 'react';
+import { findDOMNode, render, unmountComponentAtNode } from 'react-dom';
 import DropdownUtils from './DropdownUtils';
 
 const ESC_KEY = 27;
-const TRIGGER_REF = Symbol();
+const DEFAULT_POSITION = {
+  x: 'left',
+  y: 'bottom'
+};
 
 // Dropdown specific for our case.
 // Unfortunately, our `render` function returns the `li`
@@ -18,15 +21,12 @@ export default class Dropdown extends React.Component {
 
     position: PropTypes.shape({
       x: PropTypes.oneOf(['left', 'right']),
-      y: PropTypes.oneOf(['top', 'bottom']),
+      y: PropTypes.oneOf(['top', 'bottom'])
     }).isRequired
   };
 
   static defaultProps = {
-    position: {
-      x: 'left',
-      y: 'top'
-    }
+    position: DEFAULT_POSITION
   };
 
   constructor(props) {
@@ -52,6 +52,7 @@ export default class Dropdown extends React.Component {
   // Unregister all event listeners
   componentWillUnmount() {
     this.unmountDropdownContainer();
+    this.unmountDropdown();
     window.removeEventListener('click', this._handleClick);
     window.removeEventListener('keydown', this._handleEsc);
   }
@@ -65,7 +66,7 @@ export default class Dropdown extends React.Component {
   }
 
   render() {
-    return cloneElement(this.props.trigger, { ref: TRIGGER_REF });
+    return this.props.trigger;
   }
 
   mountDropdown() {
@@ -73,6 +74,7 @@ export default class Dropdown extends React.Component {
       throw new Error('Container does not exist. It may have been removed, or whatever');
     }
 
+    console.log(this.$dropdown);
     this.$dropdown = render(
       cloneElement(this.props.children, {
         style: {
@@ -103,11 +105,21 @@ export default class Dropdown extends React.Component {
 
   setPosition() {
     const offset = DropdownUtils.calculatePosition(
-      this.refs[TRIGGER_REF],
-      this.$dropdown
+      findDOMNode(this),
+      this.$dropdown,
+      this.getPositionProps()
     );
 
     this.setState(offset);
+  }
+
+  getPositionProps() {
+    const { position } = this.props;
+
+    return {
+      x: position.x || DEFAULT_POSITION.x,
+      y: position.y || DEFAULT_POSITION.y
+    };
   }
 
   _handleEsc(evt) {
@@ -117,19 +129,24 @@ export default class Dropdown extends React.Component {
   }
 
   _handleClick(evt) {
-    let open = null;
-    let triggerNode = this.refs[TRIGGER_REF];
+    const { open } = this.state;
+    const triggerNode = findDOMNode(this);
 
+    // If the target is not itself
     if ( open && evt.target !== triggerNode ) {
-      open = false;
+      this.setState({ open: false });
+    // If the target is itself
     } else if ( evt.target === triggerNode ) {
       evt.preventDefault();
       evt.stopPropagation && evt.stopPropagation();
-      open = !this.state.open;
+      this.setState({ open: !open }, () => {
+        // Given that we have a new state here,
+        // we'll directly use `this.state.open`
+        // instead of the declare constant above.
+        if ( this.state.open ) {
+          this.setPosition();
+        }
+      });
     }
-
-    this.setState({ open }, () => {
-      this.setPosition();
-    });
   }
 }
