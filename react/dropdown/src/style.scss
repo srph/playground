@@ -1,0 +1,103 @@
+$font-size-small: 12px;
+$dropdown-bg: #FFF;
+$dropdown-sub-bg: #2EAF8B;
+$dropdown-border: #F0F0F0;
+$dropdown-shadow: #C4C4C4;
+$dropdown-arrow-size: 6px;
+$dropdown-border-radius: 3px;
+
+@mixin remove-list-defaults() {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/**
+ * @see
+ * https://github.com/srph/vensils-ventures/blob/gh-pages/style/_dropdown.scss
+ */
+.c-dropdown {
+  position: absolute;
+  // Space between the trigger
+  // and the dropdown
+  margin-top: 10px;
+
+  .c-dropdown__menu {
+    @include remove-list-defaults();
+    display: block;
+    visibility: hidden;
+    box-shadow: 0px -2px 5px $dropdown-shadow;
+
+    &.c-dropdown__menu--open {
+      visibility: visible;
+      // todo animation
+      animation: c-dropdown__menu-bounce;
+      animation-duration: 0.3s;
+      animation-iteration-count: 1;
+    }
+
+    // Positions the dropdown to the right
+    &.c-dropdown__menu--right {
+      left: initial;
+      right: 10px; // Hard-coded value
+
+      &:before {
+        left: initial;
+        right: $dropdown-arrow-size;
+      }
+    }
+
+    // Arrow
+    &:before {
+      content: "";
+      display: block;
+      position: absolute;
+      top: -($dropdown-arrow-size);
+      left: 50%;
+      // So that the border appears
+      // I reckon that this could be turned into a mixin...
+      // but oh well
+      height: 0;
+      width: 0;
+      margin-left: -($dropdown-arrow-size);
+      border-left: $dropdown-arrow-size solid transparent;
+      border-right: $dropdown-arrow-size solid transparent;
+      border-bottom: $dropdown-arrow-size solid $dropdown-bg;
+    }
+
+    // We'll apply the border-radius to the li > a itself
+    // because we're not applying much styling to the dropdown menu
+    // container itself (`c-dropdown__menu`).
+    & > li {
+      > a {
+        display: block;
+        padding: 6px 10px;
+        color: $dropdown-border;
+        background: $dropdown-bg;
+        // Some awesome small-elegant typography like the other ones
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        font-size: $font-size-small;
+        border-bottom: 1px solid $dropdown-border;
+
+        &:hover {
+          text-decoration: none;
+          color: #fff;
+          background: $dropdown-sub-bg;
+        }
+      }
+
+      &:first-child > a {
+        border-top-left-radius: $dropdown-border-radius;
+        border-top-right-radius: $dropdown-border-radius;
+      }
+
+      &:last-child > a {
+        // Remove bottom border
+        border-bottom: none;
+        border-bottom-left-radius: $dropdown-border-radius;
+        border-bottom-right-radius: $dropdown-border-radius;
+      }
+    }
+  }
+}

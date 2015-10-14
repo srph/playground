@@ -1,0 +1,24 @@
+{
+  "name": "dropdown",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch:style": "sass --watch src/style.scss:build/style.css",
+    "watch:script": "./node_modules/.bin/watchify . -o build/script.js -d -v --extension=.jsx -t [ babelify --stage=0 ]"
+  },
+  "author": "Kier Borromeo <seraphipod@gmail.com> (http://srph.github.io)",
+  "license": "ISC",
+  "dependencies": {
+    "classnames": "^2.1.5",
+    "react": "^0.14.0",
+    "react-dom": "^0.14.0"
+  },
+  "devDependencies": {
+    "babel": "^5.8.23",
+    "babelify": "^6.3.0",
+    "browserify": "^11.2.0",
+    "watchify": "^3.4.0"
+  }
+}
