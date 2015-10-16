@@ -8,3 +8,6 @@ Two examples are present here:
 
 One note:
 - Width is required for ellipsis to work.
+
+Another note (edit after *69* days):
+- No it isn't. It just needs to overflow, dumbass Kier.
