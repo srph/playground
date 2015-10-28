@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Img Preloader</title>
+  <style>
+    #wrap {
+      position: relative;
+      width: 200px;
+      height: 200px;
+    }
+
+    #loader {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 200px;
+      height: 200px;
+      color: red;
+      background: gray;
+    }
+
+    #loader:hover {
+      opacity: 0.5;
+      transition: 0.15s all;
+    }
+
+    #avatar {
+      height: 200px;
+      width: 200px;
+    }
+  </style>
+</head>
+<body>
+<div id="wrap">
+  <div id="loader"></div>
+  <img id="avatar" src="http://i.imgur.com/XKSN3o3.png" />
+</div>
+
+<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+<script>
+  $('#avatar').on('load', function() {
+    console.log('Image loaded!');
+    $('#loader').remove();
+  });
+
+  $('#avatar').on('error', function() {
+    $('#loader').html('An error occured');
+    console.log('An error occured while loading the image!');
+  });
+</script>
+</body>
+</html>
