@@ -1,0 +1,1 @@
+var numbro = require('./node_modules/numbro/numbro');
