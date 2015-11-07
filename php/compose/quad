@@ -1,0 +1,33 @@
+#!/usr/bin/env php
+<?php
+
+$value = $argv[1];
+
+if ( null == $value ) {
+	instructions();
+	exit();
+}
+
+if ( !is_numeric($value) ) {
+	echo PHP_EOL;
+	echo 'error: input must be a numeric value';
+	instructions();
+	exit();
+}
+
+require './src.php';
+
+$square = function($n) {
+	return $n * $n;
+};
+
+$quad = compose($square, $square);
+$value = (int) $argv[1];
+echo "\$quad($value) : " . $quad($value) . PHP_EOL;
+
+function instructions() {
+	echo PHP_EOL;
+	echo 'Usage: php quad <number>' . PHP_EOL;
+	echo 'php quad 5' . PHP_EOL;
+	echo PHP_EOL;
+}
