@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "./node_modules/.bin/cssnext styles/main.css output.css"
+    "build": "./node_modules/.bin/cssnext styles/main.css output.css",
+    "start": "npm run build && open index.html"
   },
   "author": "Kier Borromeo <seraphipod@gmail.com> (http://srph.github.io)",
   "license": "ISC",

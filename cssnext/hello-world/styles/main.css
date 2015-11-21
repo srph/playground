@@ -1,6 +1,11 @@
 :root {
-  --brand-primary: #5a5a5a;
-  --brand-sub: #5b5b5b;
+  --brand-primary: #36FCFF;
+  --brand-sub: #FF8080;
+}
+
+body {
+  font-family: Helvetica, sans-serif;
+  font-size: 14px;
 }
 
 .hello-world {
