@@ -1,0 +1,15 @@
+.panel {
+  width: 250px;
+  background: var(--brand-white);
+  border: 1px solid var(--brand-gray-lt);
+  border-radius: var(--border-radius-base);
+}
+
+.panel > .thumb {
+  height: 250px;
+  background: var(--brand-gray);
+}
+
+.panel > .body {
+  padding: 10px;
+}

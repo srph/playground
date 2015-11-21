@@ -1,0 +1,19 @@
+:--headings,
+p {
+  margin-top: 0;
+  margin-bottom: 15px;
+}
+
+p.lead {
+  font-size: 20px;
+  font-weight: 300;
+}
+
+a {
+  color: var(--brand-link); 
+}
+
+a,
+a:hover {
+  text-decoration: none;
+}
