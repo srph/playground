@@ -1,0 +1,9 @@
+:root {
+  --brand-primary: #5a5a5a;
+  --brand-sub: #5b5b5b;
+}
+
+.hello-world {
+  color: var(--brand-primary);
+  text-shadow: 0 2px 0 var(--brand-sub);
+}
