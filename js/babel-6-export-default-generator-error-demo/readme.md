@@ -26,3 +26,6 @@ How did I assume that this was occuring only to `export default`? Open up `worki
 ```bash
 node working.js
 ```
+
+### Issue
+Check [T6733](https://phabricator.babeljs.io/T6733).
