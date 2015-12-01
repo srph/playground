@@ -20,6 +20,6 @@ ReferenceError: regeneratorRuntime is not defined
 
 ### Running
 ```bash
-npm instal
+npm install
 node index
 ```
