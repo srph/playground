@@ -1,3 +1,7 @@
 require('babel-register');
 require('babel-polyfill');
-require('./generator');
+var generator = require('./generator');
+
+var it = generator();
+console.log(it.next(12));
+console.log(it.next());
