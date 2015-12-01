@@ -28,3 +28,6 @@ To run the working,
 ```
 node working.js
 ```
+
+### Issue
+Check [T6734](https://phabricator.babeljs.io/T6734).
