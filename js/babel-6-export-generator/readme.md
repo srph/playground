@@ -21,3 +21,8 @@ Error: /Users/srph/Web/playground/js/babel-6-export-generators/generator.js: Exp
 npm install
 node index
 ```
+
+How did I assume that this was occuring only to `export default`? Open up `working.js` which `import`s the `module.exports` version of the generator.
+```bash
+node working.js
+```
