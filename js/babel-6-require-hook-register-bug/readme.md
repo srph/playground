@@ -23,3 +23,8 @@ ReferenceError: regeneratorRuntime is not defined
 npm install
 node index
 ```
+
+To run the working,
+```
+node working.js
+```
