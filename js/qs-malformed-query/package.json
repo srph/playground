@@ -1,0 +1,14 @@
+{
+  "name": "qs-malformed-query",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Kier Borromeo <seraphipod@gmail.com> (http://srph.github.io)",
+  "license": "ISC",
+  "dependencies": {
+    "qs": "^6.0.1"
+  }
+}
